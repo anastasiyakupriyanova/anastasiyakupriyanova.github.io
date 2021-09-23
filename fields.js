@@ -35,6 +35,7 @@ Object.defineProperty(e.prototype,"origin",{
 }),
 Object.defineProperty(e.prototype,"parent",{
   get:function(){
+    console.log('new parent = ', new c(this.window.parent));
     return new c(this.window.parent)
   },enumerable:!0,configurable:!0
 })
