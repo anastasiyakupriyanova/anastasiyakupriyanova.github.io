@@ -20,8 +20,6 @@ var count3 = 0;
         Object.defineProperty(e.prototype, "isLocal", {
           get: function () {
             if (count2 === 0) {
-              console.log('window.name=', window.name);
-              console.log('o.d=', o.d);
               console.log('isLocal=', !u(window.name, o.d));
               count2 = 1;
             }
