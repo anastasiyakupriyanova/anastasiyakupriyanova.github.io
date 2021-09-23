@@ -10,7 +10,7 @@ Object.defineProperty(e.prototype,"isLocal",{
 Object.defineProperty(e.prototype,"origin",{
   get:function(){
     console.log('this.isLocal=', this.isLocal);
-    console.log('this.window.location=', this.window.location);
+    console.log('this.window=', this.window);
     console.log('window.document.referrer=', window.document.referrer);
     console.log('fields origin=', this.isLocal?this.window.location.toString():window.document.referrer);
     return this.isLocal?this.window.location.toString():window.document.referrer
