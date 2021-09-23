@@ -8,7 +8,33 @@ if (count1 === 0) {
   count1 = 1;
 }
 this.window.postMessage(e,this.origin)
-},t}(),u=(r=function(t,e){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}r(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)}),l=function(t,e){return t.substring(0,e.length)===e},c=function(t){function e(e){return t.call(this,e)||this}return u(e,t),Object.defineProperty(e,"current",{get:function(){return l(window.name,o.d)?h.current.parent:new e(window)},enumerable:!0,configurable:!0}),e.prototype.createFrame=function(){return this.window.document.createElement("iframe")},
+},t
+}(),
+u=(r=function(t,e){
+  return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){
+    for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])
+  })(t,e)},
+  function(t,e){
+    function n(){this.constructor=t}r(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)
+  }),
+  l=function(t,e){
+    return t.substring(0,e.length)===e
+  },
+  c=function(t){
+    function e(e){
+      return t.call(this,e)||this
+    }
+    return u(e,t),
+    Object.defineProperty(e,"current",{
+      get:function(){
+        return l(window.name,o.d)?h.current.parent:new e(window)
+      },
+      enumerable:!0,configurable:!0
+    }),
+    e.prototype.createFrame=function(){
+      return this.window.document.createElement("iframe")
+    },
+
 Object.defineProperty(e.prototype, "isLocal", {
   get: function () {
     if (count2 === 0) {
