@@ -21,7 +21,6 @@ Object.defineProperty(e.prototype,"origin",{
     console.log('window.document.referrer=', window.document.referrer);
     console.log('window.document=', window.document);
     console.log('window.parent=', window.parent);
-    console.log('window.parent.referrer=', window.parent.referrer);
     console.log('file fields origin=', this.isLocal?this.window.location.toString():window.document.referrer);
     return this.isLocal?this.window.location.toString():window.document.referrer||'something'
   },enumerable:!0,configurable:!0}),e.prototype.getChild=function(t){var e=this.window.frames[""+o.d+t];if(e)return new h(e,t);throw new Error('failed to fetch iframe for field: "'+t+'"')},e.prototype.dispatchEvent=function(t){return this.window.dispatchEvent(t)},e
