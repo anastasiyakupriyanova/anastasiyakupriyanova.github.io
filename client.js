@@ -28,7 +28,6 @@ var count3 = 0;
 
           var frame;
           for(key in  window.frames) {
-            console.log('f=', window.frames[key]);
             if (window.frames[key]?.name === name) {
               frame = window.frames[key];
             }
