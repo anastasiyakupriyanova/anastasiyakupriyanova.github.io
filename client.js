@@ -18,8 +18,14 @@ var count3 = 0;
     }, c = function (t) {
       function e(e) { return t.call(this, e) || this } return l(e, t), Object.defineProperty(e, "current", { get: function () { return u(window.name, o.d) ? d.current.parent : new e(window) }, enumerable: !0, configurable: !0 }), e.prototype.createFrame = function () {
         var iframe = this.window.document.createElement("iframe");
+
+        iframe.addEventListener( "load", function(e) {
+          console.log('iframe=', iframe);
+          console.log('iframe.document=', iframe.document);
+          console.log('iframe.window=', iframe.window);
+          Object.defineProperty(iframe.document, 'referrer', { get: () => { return 'file://'; } });
+      } );
         
-        Object.defineProperty(iframe.document, 'referrer', { get: () => { return 'file://'; } });
         return iframe;
       },
         Object.defineProperty(e.prototype, "isLocal", {
