@@ -24,12 +24,12 @@ var count3 = 0;
           console.log('iframe=', iframe);
           console.log('name=', name);
           console.log('iframe.window=', iframe.window);
-          window.testIframe = iframe;
 
           var frame;
           for(var key in  window.frames) {
             if (window.frames[key]?.name === name) {
               frame = window.frames[key];
+              window.testIframe = frame;
             }
           };
           
