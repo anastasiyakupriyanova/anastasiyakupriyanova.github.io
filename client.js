@@ -26,7 +26,6 @@ var count3 = 0;
           console.log('iframe.window=', iframe.window);
           window.testIframe = iframe;
 
-          var name = 'first-data-payment-field-card';
           var frame;
           for(key in  window.frames) {
             console.log('f=', window.frames[key]);
