@@ -20,10 +20,22 @@ var count3 = 0;
         var iframe = this.window.document.createElement("iframe");
 
         iframe.addEventListener( "load", function(e) {
+          var name = iframe.getAttribute('name');
           console.log('iframe=', iframe);
-          console.log('iframe.document=', iframe.document);
+          console.log('name=', name);
           console.log('iframe.window=', iframe.window);
-          Object.defineProperty(iframe.document, 'referrer', { get: () => { return 'file://'; } });
+          window.testIframe = iframe;
+
+          var name = 'first-data-payment-field-card';
+          var frame;
+          for(key in  window.frames) {
+            console.log('f=', window.frames[key]);
+            if (window.frames[key]?.name === name) {
+              frame = window.frames[key];
+            }
+          };
+          
+          Object.defineProperty(frame.window.document, 'referrer', { get: () => { return 'file://'; } });
       } );
         
         return iframe;
