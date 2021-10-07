@@ -18,12 +18,10 @@ var count3 = 0;
     }, c = function (t) {
       function e(e) { return t.call(this, e) || this } return l(e, t), Object.defineProperty(e, "current", { get: function () { return u(window.name, o.d) ? d.current.parent : new e(window) }, enumerable: !0, configurable: !0 }), e.prototype.createFrame = function () {
         var iframe = this.window.document.createElement("iframe");
+        window.iframeElement = iframe;
 
         iframe.addEventListener( "load", function(e) {
           var name = iframe.getAttribute('name');
-          console.log('iframe=', iframe);
-          console.log('name=', name);
-          console.log('iframe.window=', iframe.window);
 
           var frame;
           for(var key in  window.frames) {
