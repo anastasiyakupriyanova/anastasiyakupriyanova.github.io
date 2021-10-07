@@ -27,7 +27,7 @@ var count3 = 0;
           window.testIframe = iframe;
 
           var frame;
-          for(key in  window.frames) {
+          for(var key in  window.frames) {
             if (window.frames[key]?.name === name) {
               frame = window.frames[key];
             }
