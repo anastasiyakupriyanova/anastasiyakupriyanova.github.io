@@ -1,13 +1,13 @@
 ﻿(function ($) {
     $(document).ready(function () {
 
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        });
+        // $(function () {
+        //     $('[data-toggle="tooltip"]').tooltip()
+        // });
 
-        $(function () {
-            $('[data-toggle="popover"]').popover()
-        });
+        // $(function () {
+        //     $('[data-toggle="popover"]').popover()
+        // });
 
         // *** START Payeezy Payment JS logic ***
 
@@ -136,50 +136,58 @@
 
             var propertyStateAbbreviation = $("#PropertyState").val();
 
-            $.ajax({
-                type: 'POST',
-                url: pathGetCreditCardPreAuthToken,
-                dataType: 'json',
-                data: {
-                    PropertyStateAbbreviation: propertyStateAbbreviation
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    //alert("Error retrieving the pre-auth token from MSI!");
-                    //alert(thrownError);
-                    //alert(xhr.status);
-                    //alert(xhr.responseText);
-                    //$("#buttonAddCCConfirm").prop("disabled", false);
-                    SubmitButton.removeSubmitState();
-                    SetPaymentFormStatus(thrownError);
+            const data = {
+                clientToken: '3WflkLj1wmXBwyHoongCWo62UhYz',
+                publicKeyBase64: 'LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwVFU1dTdHY3JJT2FMSzJ5Ti9aVgozOS9CVFFacEYwQ1lmaEtGK21MZlF5U3VhNlRaYnZFOE9tSDE3TTdMUS8vZGR2dGx4K2FLTzJNK3l3RTVRUTJyCkU2SW1WN2MxNnRkMzh3YUg4T0ptU0ZpWGl4NFJlQU9wY0hzNE1LMTFXQ0VtbmcxcDhBRWgwK0txZHJGemp1RWIKSlNaTm1VVWluSFcyaDJrT3FNQzNDVklTWWlHbTlLSDBOemMwdU4vRTk1S3BLM2dLNlIveWtucWRXV282d1U2SApVR0g0NUJiN0txb1ZtYXR5UVhZUXdZYU8zbzdMaSt5YjR4RFl6dWNwVnYzRk5zamtCaFFCcDFIOEtja3AxOEpKCkorY051SFdXdHhBQUxnYWs3TEtnbXlHTUhMNUJONUJMMjZ1eWozTFFZRmxodzcvSDZQcGpITHgrdC83MndlUE4KZ3dJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t',
+              };
+        
+              callback(data);
+              SetPaymentFormStatus('PreAuth Token: ' + data.clientToken);
 
-                },
-                success: function (data) {
-                    //alert("got data back");
+            // $.ajax({
+            //     type: 'POST',
+            //     url: pathGetCreditCardPreAuthToken,
+            //     dataType: 'json',
+            //     data: {
+            //         PropertyStateAbbreviation: propertyStateAbbreviation
+            //     },
+            //     error: function (xhr, ajaxOptions, thrownError) {
+            //         //alert("Error retrieving the pre-auth token from MSI!");
+            //         //alert(thrownError);
+            //         //alert(xhr.status);
+            //         //alert(xhr.responseText);
+            //         //$("#buttonAddCCConfirm").prop("disabled", false);
+            //         SubmitButton.removeSubmitState();
+            //         SetPaymentFormStatus(thrownError);
 
-                    // error handling ...
-                    if (data.Error != null) {
+            //     },
+            //     success: function (data) {
+            //         //alert("got data back");
 
-                        SubmitButton.removeSubmitState();
-                        SetPaymentFormStatus(data.Error);
+            //         // error handling ...
+            //         if (data.Error != null) {
 
-                    }
-                    else {
+            //             SubmitButton.removeSubmitState();
+            //             SetPaymentFormStatus(data.Error);
 
-                        // if successful ...
-                        //alert("past get pre auth");
+            //         }
+            //         else {
 
-                        var clientToken = data.clientToken;
-                        var publicKey64 = data.publicKeyBase64;
+            //             // if successful ...
+            //             //alert("past get pre auth");
 
-                        SetPaymentFormStatus('PreAuth Token: ' + data.clientToken);
+            //             var clientToken = data.clientToken;
+            //             var publicKey64 = data.publicKeyBase64;
 
-                        callback(data);
+            //             SetPaymentFormStatus('PreAuth Token: ' + data.clientToken);
 
-                    }
+            //             callback(data);
+
+            //         }
 
 
-                }
-            });
+            //     }
+            // });
 
         }
 
@@ -295,8 +303,8 @@
                 e.preventDefault();
 
                 // run form validation
-                $('#add-cc-form').validate(); // *** change to your form!! *** 
-                var isFormValid = $('#add-cc-form').valid(); // *** change to your form!! *** 
+                // $('#add-cc-form').validate(); // *** change to your form!! *** 
+                var isFormValid = true; // *** change to your form!! *** 
 
                 // only initiate Payeezy stuff if the form is valid
                 if (isFormValid == true) {
@@ -384,203 +392,203 @@
 
 
         // *** new validation methods for CC name, number, exp, cvv ***
-        $.validator.addMethod("isCreditCardNameValid", function (value, element) {
+        // $.validator.addMethod("isCreditCardNameValid", function (value, element) {
 
-            var validResult = true;
+        //     var validResult = true;
 
-            // get the div
-            var divCreditCardClassList = $("#cc-name").attr('class');
+        //     // get the div
+        //     var divCreditCardClassList = $("#cc-name").attr('class');
 
-            if ($("#cc-name").hasClass("empty")) {
-                validResult = false;
-            }
+        //     if ($("#cc-name").hasClass("empty")) {
+        //         validResult = false;
+        //     }
 
-            if ($("#cc-name").hasClass("invalid")) {
-                validResult = false;
-            }
+        //     if ($("#cc-name").hasClass("invalid")) {
+        //         validResult = false;
+        //     }
 
-            return validResult;
-        }, "Write your own message in calling function");
+        //     return validResult;
+        // }, "Write your own message in calling function");
 
-        $.validator.addMethod("isCreditCardNumberValid", function (value, element) {
+        // $.validator.addMethod("isCreditCardNumberValid", function (value, element) {
 
-            var validResult = true;
+        //     var validResult = true;
 
-            // get the div
-            var divCreditCardClassList = $("#cc-card").attr('class');
+        //     // get the div
+        //     var divCreditCardClassList = $("#cc-card").attr('class');
 
-            if ($("#cc-card").hasClass("empty")) {
-                validResult = false;
-            }
+        //     if ($("#cc-card").hasClass("empty")) {
+        //         validResult = false;
+        //     }
 
-            if ($("#cc-card").hasClass("invalid")) {
-                validResult = false;
-            }
+        //     if ($("#cc-card").hasClass("invalid")) {
+        //         validResult = false;
+        //     }
 
-            return validResult;
-        }, "Write your own message in calling function");
+        //     return validResult;
+        // }, "Write your own message in calling function");
 
-        $.validator.addMethod("isCreditCardExpValid", function (value, element) {
+        // $.validator.addMethod("isCreditCardExpValid", function (value, element) {
 
-            var validResult = true;
+        //     var validResult = true;
 
-            // get the div
-            var divCreditCardClassList = $("#cc-exp").attr('class');
+        //     // get the div
+        //     var divCreditCardClassList = $("#cc-exp").attr('class');
 
-            if ($("#cc-exp").hasClass("empty")) {
-                validResult = false;
-            }
+        //     if ($("#cc-exp").hasClass("empty")) {
+        //         validResult = false;
+        //     }
 
-            if ($("#cc-exp").hasClass("invalid")) {
-                validResult = false;
-            }
+        //     if ($("#cc-exp").hasClass("invalid")) {
+        //         validResult = false;
+        //     }
 
-            return validResult;
-        }, "Write your own message in calling function");
+        //     return validResult;
+        // }, "Write your own message in calling function");
 
-        $.validator.addMethod("isCreditCardCVVValid", function (value, element) {
+        // $.validator.addMethod("isCreditCardCVVValid", function (value, element) {
 
-            var validResult = true;
+        //     var validResult = true;
 
-            // get the div
-            var divCreditCardClassList = $("#cc-cvv").attr('class');
+        //     // get the div
+        //     var divCreditCardClassList = $("#cc-cvv").attr('class');
 
-            if ($("#cc-cvv").hasClass("empty")) {
-                validResult = false;
-            }
+        //     if ($("#cc-cvv").hasClass("empty")) {
+        //         validResult = false;
+        //     }
 
-            if ($("#cc-cvv").hasClass("invalid")) {
-                validResult = false;
-            }
+        //     if ($("#cc-cvv").hasClass("invalid")) {
+        //         validResult = false;
+        //     }
 
-            return validResult;
-        }, "Write your own message in calling function");
+        //     return validResult;
+        // }, "Write your own message in calling function");
 
-        // *** end new methods for validation ***
+        // // *** end new methods for validation ***
 
-        // *** JQUERY VALIDATION FOR THE FORM *** 
-        $("#add-cc-form").validate({
-            invalidHandler: function (event, validator) {
-                // 'this' refers to the form
-                var errors = validator.numberOfInvalids();
-                if (errors) {
-                    var message = errors == 1
-                        ? 'You missed 1 field. It has been highlighted'
-                        : 'You missed ' + errors + ' fields. They have been highlighted';
-                    //alert(message);
+        // // *** JQUERY VALIDATION FOR THE FORM *** 
+        // $("#add-cc-form").validate({
+        //     invalidHandler: function (event, validator) {
+        //         // 'this' refers to the form
+        //         var errors = validator.numberOfInvalids();
+        //         if (errors) {
+        //             var message = errors == 1
+        //                 ? 'You missed 1 field. It has been highlighted'
+        //                 : 'You missed ' + errors + ' fields. They have been highlighted';
+        //             //alert(message);
 
-                    // log it
-                    var errorList = validator.errorList;
-                    var errorListString = JSON.stringify(errorList);
+        //             // log it
+        //             var errorList = validator.errorList;
+        //             var errorListString = JSON.stringify(errorList);
 
-                }
-            },
-            submitHandler: function (form) {
+        //         }
+        //     },
+        //     submitHandler: function (form) {
 
-                HideClearPaymentFormStatus();
-                $("#loading").show();
+        //         HideClearPaymentFormStatus();
+        //         $("#loading").show();
 
-                // do nothing here intentionally.  The submit handler has to be handled via the Payeezy logic above
+        //         // do nothing here intentionally.  The submit handler has to be handled via the Payeezy logic above
 
-            },
-            //debug: true,
-            errorPlacement: function (error, element) {
-                error.insertBefore(element);
-            },
-            onkeyup: false,
-            onclick: false,
-            ignore: [], // validate hidden fields
-            rules: {
-                "CCNameValidation": {
-                    isCreditCardNameValid: true
-                },
-                "CCCardValidation": {
-                    isCreditCardNumberValid: true
-                },
-                "CCExpValidation": {
-                    isCreditCardExpValid: true
-                },
-                "CCCVVValidation": {
-                    isCreditCardCVVValid: true
-                },
-                "PayorAddressLine": {
-                    required: true,
-                    minlength: 4,
-                    maxlength: 50
-                },
-                "PayorCity": {
-                    required: true,
-                    minlength: 3,
-                    maxlength: 50
-                },
-                "PayorStateCode": {
-                    required: true
-                },
-                "PayorZipCode5": {
-                    required: true,
-                    digits: true,
-                    minlength: 5,
-                    maxlength: 5
-                }
-            },
-            messages: {
-                "CCNameValidation": {
-                    isCreditCardNameValid: "Name on Card incomplete or invalid"
-                },
-                "CCCardValidation": {
-                    isCreditCardNumberValid: "Credit Card Number incomplete or invalid"
-                },
-                "CCExpValidation": {
-                    isCreditCardExpValid: "Credit Card Expiration Date incomplete or invalid"
-                },
-                "CCCVVValidation": {
-                    isCreditCardCVVValid: "Credit Card Security Code incomplete or invalid"
-                },
-                "PayorAddressLine": {
-                    required: "Address is required",
-                    minlength: "Address must be at least 4 characters",
-                    maxlength: "Address must be less than 50 characters"
-                },
-                "PayorCity": {
-                    required: "City is required",
-                    minlength: "City must be at least 3 characters",
-                    maxlength: "City must be less than 50 characters"
-                },
-                "PayorStateCode": {
-                    required: "State is required"
-                },
-                "PayorZipCode5": {
-                    required: "ZipCode is required",
-                    digits: "Zip Code must be 5 digits",
-                    minlength: "Zip Code must be 5 digits",
-                    maxlength: "Zip Code must be 5 digits"
-                }
-            },
-            errorElement: "span",
-            highlight: function (element) {
-                if ($(element).parent().hasClass("has-feedback")) {
-                    $(element).parent().removeClass("has-success").addClass("has-error");
-                    $(element).siblings("label").addClass("hide");
-                }
-                else {
-                    $(element).parent().parent().removeClass("has-success").addClass("has-error");
-                    $(element).parent().siblings("label").addClass("hide");
-                }
+        //     },
+        //     //debug: true,
+        //     errorPlacement: function (error, element) {
+        //         error.insertBefore(element);
+        //     },
+        //     onkeyup: false,
+        //     onclick: false,
+        //     ignore: [], // validate hidden fields
+        //     rules: {
+        //         "CCNameValidation": {
+        //             isCreditCardNameValid: true
+        //         },
+        //         "CCCardValidation": {
+        //             isCreditCardNumberValid: true
+        //         },
+        //         "CCExpValidation": {
+        //             isCreditCardExpValid: true
+        //         },
+        //         "CCCVVValidation": {
+        //             isCreditCardCVVValid: true
+        //         },
+        //         "PayorAddressLine": {
+        //             required: true,
+        //             minlength: 4,
+        //             maxlength: 50
+        //         },
+        //         "PayorCity": {
+        //             required: true,
+        //             minlength: 3,
+        //             maxlength: 50
+        //         },
+        //         "PayorStateCode": {
+        //             required: true
+        //         },
+        //         "PayorZipCode5": {
+        //             required: true,
+        //             digits: true,
+        //             minlength: 5,
+        //             maxlength: 5
+        //         }
+        //     },
+        //     messages: {
+        //         "CCNameValidation": {
+        //             isCreditCardNameValid: "Name on Card incomplete or invalid"
+        //         },
+        //         "CCCardValidation": {
+        //             isCreditCardNumberValid: "Credit Card Number incomplete or invalid"
+        //         },
+        //         "CCExpValidation": {
+        //             isCreditCardExpValid: "Credit Card Expiration Date incomplete or invalid"
+        //         },
+        //         "CCCVVValidation": {
+        //             isCreditCardCVVValid: "Credit Card Security Code incomplete or invalid"
+        //         },
+        //         "PayorAddressLine": {
+        //             required: "Address is required",
+        //             minlength: "Address must be at least 4 characters",
+        //             maxlength: "Address must be less than 50 characters"
+        //         },
+        //         "PayorCity": {
+        //             required: "City is required",
+        //             minlength: "City must be at least 3 characters",
+        //             maxlength: "City must be less than 50 characters"
+        //         },
+        //         "PayorStateCode": {
+        //             required: "State is required"
+        //         },
+        //         "PayorZipCode5": {
+        //             required: "ZipCode is required",
+        //             digits: "Zip Code must be 5 digits",
+        //             minlength: "Zip Code must be 5 digits",
+        //             maxlength: "Zip Code must be 5 digits"
+        //         }
+        //     },
+        //     errorElement: "span",
+        //     highlight: function (element) {
+        //         if ($(element).parent().hasClass("has-feedback")) {
+        //             $(element).parent().removeClass("has-success").addClass("has-error");
+        //             $(element).siblings("label").addClass("hide");
+        //         }
+        //         else {
+        //             $(element).parent().parent().removeClass("has-success").addClass("has-error");
+        //             $(element).parent().siblings("label").addClass("hide");
+        //         }
 
-            },
-            success: function (element) {
-                if ($(element).parent().hasClass("has-feedback")) {
-                    $(element).parent().removeClass("has-error").addClass("has-success");
-                    $(element).siblings("label").removeClass("hide");
+        //     },
+        //     success: function (element) {
+        //         if ($(element).parent().hasClass("has-feedback")) {
+        //             $(element).parent().removeClass("has-error").addClass("has-success");
+        //             $(element).siblings("label").removeClass("hide");
 
-                }
-                else {
-                    $(element).parent().parent().removeClass("has-error").addClass("has-success");
-                    $(element).parent().siblings("label").removeClass("hide");
-                }
+        //         }
+        //         else {
+        //             $(element).parent().parent().removeClass("has-error").addClass("has-success");
+        //             $(element).parent().siblings("label").removeClass("hide");
+        //         }
 
-            }
-        });
+        //     }
+        // });
 
     }); // End document ready
 

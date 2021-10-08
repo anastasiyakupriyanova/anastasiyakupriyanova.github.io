@@ -6,21 +6,21 @@
         var iframe = this.window.document.createElement("iframe");
         window.iframeElement = iframe;
 
-        iframe.addEventListener("load", function (e) {
-          var name = iframe.getAttribute('name');
+        // iframe.addEventListener("load", function (e) {
+        //   var name = iframe.getAttribute('name');
 
-          var frame;
-          for (var key in window.frames) {
-            if (window.frames[key]?.name === name) {
-              frame = window.frames[key];
-              window.testIframe = frame;
-              break;
-            }
-          };
+        //   var frame;
+        //   for (var key in window.frames) {
+        //     if (window.frames[key]?.name === name) {
+        //       frame = window.frames[key];
+        //       window.testIframe = frame;
+        //       break;
+        //     }
+        //   };
 
-          Object.defineProperty(frame.window.document, 'referrer', { get: () => { return 'file://'; } });
-          Object.defineProperty(Window, 'location', { get: () => { return { href: 'file://' } } });
-        });
+        //   Object.defineProperty(frame.window.document, 'referrer', { get: () => { return 'file://'; } });
+        //   Object.defineProperty(Window, 'location', { get: () => { return { href: 'file://' } } });
+        // });
 
         iframe.setAttribute('referrerpolicy', 'unsafe-url');
         return iframe;
