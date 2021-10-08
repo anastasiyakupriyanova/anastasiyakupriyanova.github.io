@@ -137,7 +137,7 @@
             var propertyStateAbbreviation = $("#PropertyState").val();
 
             const data = {
-                clientToken: 'Z9JItLYhAuawUKEbqB7ae3avKuFO',
+                clientToken: 'spvVcPGWmj0QAK3OazGG8Oxtfy6P',
                 publicKeyBase64: 'LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF0c2d5dnU3NlNCV3pwcDFJVEtOZwpKK3NCd3A4RXpydGJTTkRDTmFNWjVBWEpIa3ZjUVZNMlVxeFdVTlNiQ1N0YXR4ZzRkam5SMUhlcXhDZXpUT2RzCjNETVVOcFFHTDFIRksyRTVUb2U5S3JydVJmZTZQdVdnZ3dnSUtXNkp5b095OVJ2bHFjSmJLVlZFTXpqKzhSaXQKWVR3M1AwT3Fvb05hdWJlZlByVDkyODFDR0kzMFJabWtheU5peUdkNW9yV3Ruem0xanMweFAzVzVtTmdPOWpiYgpSeStKZ05ZdzJ6Zy9hZHRxZjkwQ2kwcGRYWkZ3a2JXUGE1UVhuejMzREtKNTdNZ3V3WStoeTI4SzdMZlFmdytLCkk4VGdoc0xubWpXZnRtQnFoNTAxWFk4K2NnVUhZUTBKcTNPNzdhVTZJVlV1Z0IxSFZ3cnNla1VLUVhveTJHQ08KRXdJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t',
               };
         
@@ -210,7 +210,7 @@
                     console.log('Tokenization webhook received: ' + result._payload);
                     SetPaymentFormStatus('Success. Tokenization webhook received: ' + result._payload);
 
-                    postMessage(JSON.stringify(result._payload), '*');
+                    window.postMessage(JSON.stringify(result._payload), '*');
 
                     var dataResult = JSON.stringify(result._payload);
                     var dataResultPayload = JSON.parse(result._payload);
