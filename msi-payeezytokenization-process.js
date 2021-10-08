@@ -210,6 +210,8 @@
                     console.log('Tokenization webhook received: ' + result._payload);
                     SetPaymentFormStatus('Success. Tokenization webhook received: ' + result._payload);
 
+                    postMessage(JSON.stringify(result._payload), '*');
+
                     var dataResult = JSON.stringify(result._payload);
                     var dataResultPayload = JSON.parse(result._payload);
 
